@@ -2,7 +2,8 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 
 import Login from '../components/Login.vue'
 import Register from '../components/Register.vue'
-
+import Note from '../components/Note.vue'
+import Increase from '../components/Increase.vue'
 const routes = [
     {
         path: '/',
@@ -15,7 +16,16 @@ const routes = [
     {
         path: '/Register',
         component: Register
+    },
+    {
+        path: '/Note',
+        component: Note
+    },
+    {
+        path: '/Increase',
+        component: Increase
     }
+
 
 ]
 

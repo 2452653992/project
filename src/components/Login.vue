@@ -1,29 +1,31 @@
 <template>
-    <div class="login_box">
-        <div class="nav_head">
-            云端笔记
-        </div>
-        <div class="input">
-            <el-input v-model="state.account" placeholder="账号" :prefix-icon="UserFilled" />
-        </div>
-        <div class="input">
-            <el-input v-model="state.password" placeholder="密码" show-password :prefix-icon="Key" />
-        </div>
-        <div class="input">
-            <el-input v-model="state.verification" placeholder="输入验证码" >
-                <template #suffix>
-                    <el-icon class="el-input__icon" id="verify">
-                        <VueImageVerify ref="verifyRef"/>
-                    </el-icon>
-                </template>
-            </el-input>
-        </div>
-        <div class="skip">
-            没有账号？ <router-link to="/register">立即注册</router-link>
-        </div>
+    <div class="login">
+        <div class="login_box">
+            <div class="nav_head">
+                云端笔记
+            </div>
+            <div class="input">
+                <el-input v-model="state.account" placeholder="账号" :prefix-icon="UserFilled" />
+            </div>
+            <div class="input">
+                <el-input v-model="state.password" placeholder="密码" show-password :prefix-icon="Key" />
+            </div>
+            <div class="input">
+                <el-input v-model="state.verification" placeholder="输入验证码" >
+                    <template #suffix>
+                        <el-icon class="el-input__icon" id="verify">
+                            <VueImageVerify ref="verifyRef"/>
+                        </el-icon>
+                    </template>
+                </el-input>
+            </div>
+            <div class="skip">
+                没有账号？ <router-link to="/register">立即注册</router-link>
+            </div>
 
-        <div class="login_button">
-            <button @click="submit">登录</button>
+            <div class="login_button">
+                <button @click="submit">登录</button>
+            </div>
         </div>
     </div>
 </template>
@@ -78,6 +80,13 @@ a {
 
 }
 
+.login {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .nav_head {
     height: 100px;
     /* background-color: red; */
@@ -119,4 +128,8 @@ a {
 
 .skip {
     margin-left: 5px;
-}</style>
+}
+
+
+
+</style>
