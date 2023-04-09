@@ -66,6 +66,7 @@ const submit = async (values) => {
 </script>
 
 <style scoped>
+
 a {
     text-decoration: none;
 }
