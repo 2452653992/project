@@ -1,5 +1,7 @@
 <template>
-    <div class="login_box">
+<div class="view">
+<div class="Login">
+<div class="login_box">
         <div class="nav_head">
             云端笔记
         </div>
@@ -26,11 +28,14 @@
             <button @click="submit">登录</button>
         </div>
     </div>
+    </div>
+</div>
+    
 </template>
 
 <script setup>
 import { ref, reactive } from 'vue'
-import VueImageVerify from './VueImageVerify.vue';
+import VueImageVerify from '../components/VueImageVerify.vue';
 import { UserFilled, Key } from '@element-plus/icons-vue'
 import { login } from '../service/user'
 import { setLocal } from '../common/js/utils'
@@ -66,11 +71,18 @@ const submit = async (values) => {
 </script>
 
 <style scoped>
-
 a {
     text-decoration: none;
+    color: #333;
 }
-
+.login {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: url(../116.jpg) no-repeat center;
+}
 .login_box {
     width: 400px;
     height: 315px;

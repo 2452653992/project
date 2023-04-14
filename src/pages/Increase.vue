@@ -83,7 +83,9 @@
 
 <script setup>
 import { reactive, ref } from 'vue'
+import { useRouter } from 'vue-router'
 // do not use same name with ref
+const $router = useRouter()
 const form = reactive({
     title: '',
     classify: '',
@@ -115,5 +117,6 @@ const options = [
 ]
 const onSubmit = () => {
     console.log('submit!')
+    $router.push('/Home')
 }
 </script>

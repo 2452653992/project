@@ -32,7 +32,7 @@
 
 <script setup>
 import { ref } from 'vue'
-import VueImageVerify from './VueImageVerify.vue'
+import VueImageVerify from '../components/VueImageVerify.vue'
 import { UserFilled, Key } from '@element-plus/icons-vue'
 const account = ref('')
 const password = ref('')
@@ -43,6 +43,7 @@ const verification = ref('')
 <style scoped>
 a {
     text-decoration: none;
+    color: #333;
 }
 
 .login_box {

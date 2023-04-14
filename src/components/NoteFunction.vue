@@ -7,7 +7,7 @@
         </div>
         <div class="main-function">
             <div class="four-function">
-                <el-button type="primary" plain :icon="Plus">新增</el-button>
+                <el-button type="primary" plain :icon="Plus" @click="plusHandle">新增</el-button>
                 <el-button type="info" plain :icon="Edit">修改</el-button>
                 <el-button type="danger" plain :icon="Delete">删除</el-button>
                 <el-button type="success" plain :icon="SetUp">导出</el-button>
@@ -39,7 +39,11 @@
 
 <script setup>
     import { Search,Plus,Edit,Delete,SetUp,RefreshRight} from '@element-plus/icons-vue'
-
+    import { useRouter } from 'vue-router'
+    const $router = useRouter()
+    const plusHandle = () => {
+        $router.push('/Increase')
+    }
 </script>
 
 <style scoped>
