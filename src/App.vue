@@ -1,26 +1,21 @@
 <script setup>
 
-
 </script>
 
 
 <template>
-  <div class="login">
-    <router-view></router-view>
+  <div class="view">
+      <router-view style="width: 100%; height: 100%;"></router-view>
   </div>
-  
 </template>
 
 
 
 <style>
 
- .login {
+.view {
   width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 
