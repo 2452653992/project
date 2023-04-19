@@ -31,7 +31,7 @@
 import { useRouter } from 'vue-router'
 const $router = useRouter()
 const logOut = () => {
-    $router.push('/Login')
+    $router.push('/NewLogin')
 }
 </script>
 <style scoped>

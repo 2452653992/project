@@ -13,7 +13,7 @@ const mainstore = useMainStore()
   <div>
     <TopBar></TopBar>
     <div class="body">
-      <NoteSidebar style="margin-top: 100px"></NoteSidebar>
+      <NoteSidebar></NoteSidebar>
       <div class="NoteShowbar">
         <NoteFunction></NoteFunction>
         <Note></Note>

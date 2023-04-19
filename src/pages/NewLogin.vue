@@ -33,7 +33,7 @@
 
       <button class="login__button" @click="submit">登录</button>
       <p class="login__register">
-        没有账号? 立即注册  <router-link to="/register"> 注册 </router-link>
+        没有账号? 立即注册  <router-link to="/NewRegister"> 注册 </router-link>
       </p>
 
 
@@ -41,7 +41,7 @@
   </div>
 </template>
 
-<style scoped>
+<style>
 /*=============== LOGIN ===============*/
 .login {
   position: relative;
