@@ -30,7 +30,7 @@
 </template>
 
 <script setup>
-    // import { Delete,Plus} from '@element-plus/icons-vue'
+    
 </script>
 
 <style scoped>
@@ -41,6 +41,7 @@
         height: 100%;
         border-right: 1px #eff1f4 solid;
         background-color: #ffffff;
+        color: #333;
     }
 
     .sidebar-header {

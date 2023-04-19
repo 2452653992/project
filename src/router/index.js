@@ -1,31 +1,29 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 
-import Login from '../pages/Login.vue'
+
 import Register from '../pages/Register.vue'
 import Home from '../pages/Home.vue'
-import Increase from '../pages/Increase.vue'
 
+// import Increase from '../pages/Increase.vue' // 该组件由对话框实现
+import NewLogin from '../pages/NewLogin.vue'
 const routes = [
     {
         path: '/',
-        redirect: "/Login"
+        redirect: "/NewLogin"
     },
     {
-        path: '/Login',
-        component: Login
+        path: '/NewLogin',
+        component: NewLogin
     },
     {
         path: '/Register',
         component: Register
     },
     {
-        path: '/Increase',
-        component: Increase
-    },
-    {
         path: '/Home',
         component: Home
-    }
+    },
+    
 
 ]
 

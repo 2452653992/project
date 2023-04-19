@@ -1,5 +1,6 @@
 <template>
     <div class="header-function">
+        
         <div class="search">
             <label for="" class="label">标题</label>
             <input type="text" placeholder="请输入标题">
@@ -7,7 +8,8 @@
         </div>
         <div class="main-function">
             <div class="four-function">
-                <el-button type="primary" plain :icon="Plus" @click="plusHandle">新增</el-button>
+                <div class="left-function"><Increase></Increase></div>
+                
                 <el-button type="info" plain :icon="Edit">修改</el-button>
                 <el-button type="danger" plain :icon="Delete">删除</el-button>
                 <el-button type="success" plain :icon="SetUp">导出</el-button>
@@ -38,12 +40,15 @@
 </template>
 
 <script setup>
-    import { Search,Plus,Edit,Delete,SetUp,RefreshRight} from '@element-plus/icons-vue'
+    import Increase from './Increase.vue'
+    import { Plus, Edit,Delete,SetUp,Search,RefreshRight} from '@element-plus/icons-vue'
+    import eventBus from '../utils/bus'
+    import { nanoid } from 'nanoid'
+    import {reactive, inject, ref} from 'vue'
     import { useRouter } from 'vue-router'
-    const $router = useRouter()
-    const plusHandle = () => {
-        $router.push('/Increase')
-    }
+    import {useMainStore} from '../store/index.js'
+    const store = useMainStore()
+
 </script>
 
 <style scoped>
@@ -53,6 +58,7 @@
     .search .label {
         font-size: 20px;
         font-weight: 600;
+        color: black;
     }
     .search input {
         outline: none;
@@ -60,6 +66,13 @@
         margin: 0 20px;
         padding-left: 10px;
         border: 2px solid rgb(248,249,250);
+    }
+    .four-function {
+        display: flex;
+        justify-content: space-between;
+    }
+    .left-function {
+        margin-right: 12px;
     }
     .main-function {
         margin: 50px 0;

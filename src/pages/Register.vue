@@ -1,31 +1,33 @@
 <template>
-    <div class="login_box">
-        <div class="nav_head">
-            用户注册
-        </div>
-        <div class="input">
-            <el-input v-model="account" placeholder="账号" :prefix-icon="UserFilled" />
-        </div>
-        <div class="input">
-            <el-input v-model="password" placeholder="密码" show-password :prefix-icon="Key" />
-        </div>
-        <div class="input">
-            <el-input v-model="passwordconfirmed" placeholder="确认密码" show-password :prefix-icon="Key" />
-        </div>
-        <div class="input">
-            <el-input v-model="verification" placeholder="输入验证码">
-                <template #suffix>
-                    <el-icon class="el-input__icon" id="verify">
-                        <VueImageVerify />
-                    </el-icon>
-                </template>
-            </el-input>
-        </div>
-        <div class="skip">
-            已有账号 <router-link to="/login">立即登录</router-link>
-        </div>
-        <div class="login_button">
-            <button>注册</button>
+    <div class="login">
+        <div class="login_box">
+            <div class="nav_head">
+                用户注册
+            </div>
+            <div class="input">
+                <el-input v-model="account" placeholder="账号" :prefix-icon="UserFilled" />
+            </div>
+            <div class="input">
+                <el-input v-model="password" placeholder="密码" show-password :prefix-icon="Key" />
+            </div>
+            <div class="input">
+                <el-input v-model="passwordconfirmed" placeholder="确认密码" show-password :prefix-icon="Key" />
+            </div>
+            <div class="input">
+                <el-input v-model="verification" placeholder="输入验证码">
+                    <template #suffix>
+                        <el-icon class="el-input__icon" id="verify">
+                            <VueImageVerify />
+                        </el-icon>
+                    </template>
+                </el-input>
+            </div>
+            <div class="skip">
+                已有账号 <router-link to="/login">立即登录</router-link>
+            </div>
+            <div class="login_button">
+                <button>注册</button>
+            </div>
         </div>
     </div>
 </template>
@@ -64,6 +66,15 @@ a {
     color: rgb(48, 49, 50);
 }
 
+.login {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url(../116.jpg) no-repeat center;
+}
+
 .input {
     margin: 5px 5px;
 
@@ -83,7 +94,7 @@ a {
 }
 
 .login_button button {
-    width: 90%;
+    width: 100%;
     height: 78%;
     margin: auto;
     color: #fff;
@@ -100,4 +111,5 @@ a {
 
 .skip {
     margin-left: 5px;
-}</style>
+}
+</style>

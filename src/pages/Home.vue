@@ -1,8 +1,12 @@
 <script setup>
+
 import TopBar from '../components/TopBar.vue'
 import NoteSidebar from '../components/NoteSidebar.vue'
 import NoteFunction from '../components/NoteFunction.vue'
 import Note from '../components/Note.vue'
+import { useMainStore } from '../store'
+
+const mainstore = useMainStore()
 
 </script>
 <template>
@@ -25,6 +29,7 @@ import Note from '../components/Note.vue'
   flex-direction: row;
   padding: 40px;
 }
+
 .NoteShowbar {
   flex: 1;
 }
