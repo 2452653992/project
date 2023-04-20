@@ -25,7 +25,7 @@ export const useMainStore = defineStore('main',{
     // 增加笔记
     changeNote(form) {
       const note = {
-          id : form.id,
+          id : nanoid(),
           title : form.title,
           content : form.content,
           classification : form.classification,
@@ -42,6 +42,11 @@ export const useMainStore = defineStore('main',{
           name : form.name,
       }
       this.MenuItems.push(menuitem)
+    },
+    // 删除笔记
+    deleteNote(id) {
+      this.notes = this.notes.filter(note=>note.id !== id)
+      // this.notes.splice(id, 1)
     }
   }
 })

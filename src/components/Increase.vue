@@ -4,55 +4,6 @@
         <el-button type="primary" plain :icon="Plus" @click="plusHandle()">新增</el-button>
         <el-dialog v-model="dialogVisible" width="55%" align-center
             style="background: linear-gradient(115deg, #56d8e4 10%, #9f01ea 90%);">
-            <!-- <div class="increase">
-                <div class="header">
-                    添加笔记
-                </div>
-                <div class="contain">
-                    <el-form :model="form" label-width="120px" :inline="true">
-                        <el-form-item label="标题" :rules="[
-                            { required: true, message: '必须有标题' }
-                        ]">
-                            <el-input v-model="form.title" placeholder="请输入标题" />
-                        </el-form-item>
-                        
-                        <el-form-item label="分类" :rules="[
-                            { required: true, message: '必须选择分类' }
-                        ]">
-                            <el-select v-model="value" class="m-2" placeholder="请选择" size="default">
-                                <el-option v-for="item in options" :key="item.value" :label="item.label"
-                                    :value="item.value" />
-                            </el-select>
-                        </el-form-item>
-                        <el-form-item label="状态">
-                            <el-radio-group v-model="form.status">
-                                <el-radio label="显示" />
-                                <el-radio label="隐藏" />
-                            </el-radio-group>
-                        </el-form-item>
-                    </el-form>
-                    <el-form :model="form" label-width="120px">
-                        <el-form-item label="描述">
-                            <el-input v-model="form.description" maxlength="30" placeholder="请输入描述" show-word-limit
-                                type="textarea" style="width: 600px; height: 50px;" />
-                        </el-form-item>
-                    </el-form>
-                    <el-form :model="form" label-width="120px">
-                        <el-form-item label="内容">
-                            <el-input v-model="form.content" placeholder="请输入内容" style="width: 80%; height: 200px;" />
-                        </el-form-item>
-                    </el-form>
-
-
-                </div>
-            </div>
-            <template #footer>
-                <div class="confirm">
-
-                    <el-button style="float: right; margin-left: 25px;" size="large">取消</el-button>
-                    <el-button type="primary" @click="onSubmit" style="float: right;" size="large">上传</el-button>
-                </div>
-            </template> -->
             <div class="addnote">
                 <div class="container">
                     <div class="text">添加笔记</div>
@@ -65,10 +16,10 @@
                             </div>
                             <div class="input-data" style="display: flex; line-height: 40px">
                                 分类
-                                <el-select v-model="value" class="m-2" placeholder="请选择分类" size="large"
+                                <el-select v-model="form.classification" class="m-2" placeholder="请选择分类" size="large"
                                     style="margin-left: 10px;">
-                                    <el-option v-for="item in options" :key="item.value" :label="item.label"
-                                        :value="item.value" />
+                                    <el-option v-for="item in options" :key="item.value" :label="item.name"
+                                        :value="item.name" />
                                 </el-select>
                                 <!-- </el-form-item> -->
                             </div>
@@ -76,8 +27,8 @@
                         <div class="form-row">
                             <div class="radiobox">
                                 状态<el-radio-group v-model="form.status" class="ml-4 radio">
-                                    <el-radio label="1" size="large">显示</el-radio>
-                                    <el-radio label="2" size="large">隐藏</el-radio>
+                                    <el-radio label='1' size="large">显示</el-radio>
+                                    <el-radio label='2' size="large">隐藏</el-radio>
                                 </el-radio-group>
                             </div>
                         </div>
@@ -136,6 +87,7 @@
     background: -webkit-linear-gradient(right, #56d8e4, #9f01ea, #56d8e4, #9f01ea);
     /* 以盒子内的文字作为裁剪区域向外裁剪 */
     -webkit-background-clip: text;
+    /* 字体改成透明 */
     -webkit-text-fill-color: transparent;
 }
 
@@ -316,6 +268,7 @@ form .form-row .textarea {
 </style>
 
 <script setup>
+
 import { Plus } from '@element-plus/icons-vue'
 import { reactive, ref, inject, onMounted } from 'vue'
 import { useMainStore } from '../store/index'
@@ -330,37 +283,18 @@ const store = useMainStore()
 const dialogVisible = ref(false)
 // 表单默认内容
 var form = reactive({
-    id: '',
+    id: nanoid(),
     title: '',
     classification: '',
     content: '',
     description: '',
-    status: false,
+    status: '1',
     createTime: ""
 })
 const value = ref('')
-const options = [
-    {
-        value: 'Option1',
-        label: 'Option1',
-    },
-    {
-        value: 'Option2',
-        label: 'Option2',
-    },
-    {
-        value: 'Option3',
-        label: 'Option3',
-    },
-    {
-        value: 'Option4',
-        label: 'Option4',
-    },
-    {
-        value: 'Option5',
-        label: 'Option5',
-    },
-]
+console.log('is:',store.MenuItems.Target)
+const options = store.MenuItems
+
 // 提交笔记内容
 const onSubmit = () => {
     form.createTime = handleDate()
@@ -374,7 +308,7 @@ const onSubmit = () => {
         classification: '',
         content: '',
         description: '',
-        status: false,
+        status: '1',
         createTime: ""
     })
 }
