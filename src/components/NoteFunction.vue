@@ -10,8 +10,8 @@
             <div class="four-function">
                 <div class="left-function"><Increase></Increase></div>
                 
-                <el-button type="info" plain :icon="Edit">修改</el-button>
-                <el-button type="danger" plain :icon="Delete">删除</el-button>
+                <el-button type="info" plain :icon="Edit" @click="handleEdit()">修改</el-button>
+                <el-button type="danger" plain :icon="Delete" @click="handleDelete()">删除</el-button>
                 <el-button type="success" plain :icon="SetUp">导出</el-button>
             </div>
             <div class="two-function">
@@ -40,15 +40,24 @@
 </template>
 
 <script setup>
+    import eventBus from '../utils/bus'
     import Increase from './Increase.vue'
     import { Plus, Edit,Delete,SetUp,Search,RefreshRight} from '@element-plus/icons-vue'
-    import eventBus from '../utils/bus'
     import { nanoid } from 'nanoid'
-    import {reactive, inject, ref} from 'vue'
+    import {reactive, inject, ref,onMounted} from 'vue'
     import { useRouter } from 'vue-router'
     import {useMainStore} from '../store/index.js'
     const store = useMainStore()
-
+    // 修改按钮
+    const handleEdit = () => {
+        eventBus.emit('handleEditButton')
+    }
+    const handleDelete = () => {
+        eventBus.emit('handleDeleteButton')
+    }
+onMounted(()=>{
+    
+})
 </script>
 
 <style scoped>

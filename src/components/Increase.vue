@@ -2,7 +2,7 @@
     <!-- // 添加对话框 -->
     <div>
         <el-button type="primary" plain :icon="Plus" @click="plusHandle()">新增</el-button>
-        <el-dialog v-model="dialogVisible" width="55%" align-center
+        <el-dialog v-model="store.dialogVisible" width="55%" align-center
             style="background: linear-gradient(115deg, #56d8e4 10%, #9f01ea 90%);">
             <div class="addnote">
                 <div class="container">
@@ -270,7 +270,7 @@ form .form-row .textarea {
 <script setup>
 
 import { Plus } from '@element-plus/icons-vue'
-import { reactive, ref, inject, onMounted } from 'vue'
+import { reactive, ref, inject, onMounted,toRaw } from 'vue'
 import { useMainStore } from '../store/index'
 import { useRouter } from 'vue-router'
 import eventBus from '../utils/bus'
@@ -280,7 +280,6 @@ import { nanoid } from 'nanoid'
 const $router = useRouter()
 const store = useMainStore()
 
-const dialogVisible = ref(false)
 // 表单默认内容
 var form = reactive({
     id: nanoid(),
@@ -289,38 +288,44 @@ var form = reactive({
     content: '',
     description: '',
     status: '1',
-    createTime: ""
+    createTime: ''
 })
+
 const value = ref('')
 console.log('is:',store.MenuItems.Target)
 const options = store.MenuItems
 
-// 提交笔记内容
-const onSubmit = () => {
-    form.createTime = handleDate()
-    console.log('submit!')
-    store.changeNote(form)
-    dialogVisible.value = false;
-    // 提交后初始化表单内容  注意要写成响应式
+// 清除
+const clear = () => { 
     form = reactive({
-        id : '',
+        id : nanoid(),
         title: '',
         classification: '',
         content: '',
         description: '',
         status: '1',
-        createTime: ""
+        createTime: handleDate()
     })
+}
+
+// 提交笔记内容
+const onSubmit = () => {
+    console.log('submit!')
+    store.changeNote(form)
+    store.dialogVisible = false;
+    // 提交后初始化表单内容  注意要写成响应式
+    clear()
 }
 // 增加笔记按钮
 const plusHandle = () => {
-    dialogVisible.value = true;
+    store.dialogVisible = true;
 }
 
 //取消
 const cancel = () => {
     console.log('cancel!')
-    dialogVisible.value = false;
+    store.dialogVisible = false;
+    clear()
 }
 
 const handleDate = () => {
@@ -331,4 +336,28 @@ const handleDate = () => {
     const formattedDate = `${year}-${month}-${day}`; // 格式化日期字符串
     return formattedDate; // 输出：xxxx-xx-xx 格式的日期字符串
 }
+
+// 修改某笔记
+onMounted(()=>{
+    form.createTime = handleDate()
+    eventBus.on('handleEdit',(id) => {
+        store.dialogVisible = true
+        store.notes.forEach(note => {
+            if(id == note.id)
+            {
+                const obj = {
+                    id : note.id,
+                    title : note.title,
+                    content : note.content,
+                    createTime : note.createTime,
+                    description : note.description,
+                    status : note.status,
+                    classification : note.classification
+                }
+                form = reactive(obj)
+            }
+        })
+        console.log("有note被修改了!");
+    });
+})
 </script>

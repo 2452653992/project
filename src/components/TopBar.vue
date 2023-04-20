@@ -9,9 +9,9 @@
       </span>
     </div>
     <div class="login_status">
-      <el-icon style="width: 36px; height: 36px; margin-right: 8px" size="33"
-        ><User
-      /></el-icon>
+      <el-icon style="width: 36px; height: 36px; margin-right: 8px" size="33">
+        <User/>
+      </el-icon>
       <el-dropdown>
         <span class="el-dropdown-link">
           <el-icon style="width: 36px; height: 36px; margin-right: 8px" size="33"><ArrowDown/></el-icon>
@@ -29,6 +29,7 @@
 
 <script setup>
 import { useRouter } from 'vue-router'
+import { User } from '@element-plus/icons-vue'
 const $router = useRouter()
 const logOut = () => {
     $router.push('/NewLogin')
