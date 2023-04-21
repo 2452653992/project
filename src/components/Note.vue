@@ -1,6 +1,6 @@
 <template>
     <div class="note">
-        <el-table ref="multipleTableRef" :data="store.notes" style="width: 100%" @selection-change="handleSelectionChange"
+        <el-table ref="multipleTableRef" :data="store.filteredNotes" style="width: 100%" @selection-change="handleSelectionChange"
             :table-layout="tableLayout">
             <el-table-column type="selection" width="55" />
             <el-table-column prop="title" label="标题" width="180" />
@@ -18,8 +18,19 @@
                         @click.prevent="deleteRow(scope.row.id)">删除</el-button>
                 </template>
             </el-table-column>
-
         </el-table>
+        <!-- 分页器 -->
+        <div class="page-bottom">
+            <el-pagination
+            :current-page="currentPage"
+            :page-size="pageSize"
+            :total="total"
+            layout="total, sizes, prev, pager, next, jumper"
+            @current-change="handleCurrentChange"
+            @size-change="handleSizeChange"
+            style="float:right;"
+            ></el-pagination>
+        </div>
     </div>
 </template>
 
@@ -27,7 +38,8 @@
 
 
 <script setup>
-import { ref, reactive, onMounted, toRaw} from 'vue'
+
+import { ref, reactive, onMounted, computed,toRaw} from 'vue'
 import { Delete, Edit, } from '@element-plus/icons-vue'
 import eventBus from '../utils/bus'
 import { useMainStore } from '../store/index'
@@ -42,6 +54,35 @@ const store = useMainStore()
 
 const multipleTableRef = ref()
 const multipleSelection = ref([])
+
+
+// 注意想使用的时候ref要加.value
+const currentPage = reactive({ value: 1 });
+// 每页展示个数
+const pageSize = ref(2);
+const total = computed(() => {
+    return store.notes.length;
+});
+// 表格展示的数据应该是动态的，和分页里面的数据相呼应
+const tableData = computed(() => {
+    const start = (currentPage.value - 1) * pageSize.value;
+    const end = start + pageSize.value;
+    return store.notes.slice(start, end);
+});
+// 改变每页展示的max值
+const handleSizeChange = (val) => {
+    console.log(`每页 ${val} 条`);
+    pageSize.value = val;
+    multipleTableRef.value.setCurrentRow(null);
+};
+// 换页
+const handleCurrentChange = (val) => {
+    console.log(`当前页: ${val}`);
+    currentPage.value = val;
+    multipleTableRef.value.setCurrentRow(null);
+};
+
+
 const handleSelectionChange = (val) => {
     multipleSelection.value = val
     // console.log(multipleSelection.value);
@@ -100,5 +141,13 @@ onMounted(() => {
 .note {
     margin: 0 4%;
 
+}
+
+.page-bottom {
+    position: absolute; 
+    left: 50%; 
+    transform: 
+    translateX(-50%); 
+    bottom: 20px;
 }
 </style>

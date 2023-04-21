@@ -32,7 +32,19 @@ export const useMainStore = defineStore('main',{
           createTime: "2010-1-1"
         }
       ],
-      filteredNotes: [],
+      filteredNotes: [
+        {
+          id: '0',
+          title: "c++真牛",
+          classification: "c++",
+          description: "无",
+          content: "无",
+          status: true,
+          createTime: "2010-1-1"
+        }
+      ],
+      tabelData:[],
+      pageData:[],
     }
   },
   getters:{},
@@ -59,10 +71,14 @@ export const useMainStore = defineStore('main',{
           createTime : form.createTime
         }
         this.notes.unshift(note)
+        this.filteredNotes.unshift(note)
       } else {
         this.notes[noteIndex] = form
+        this.filteredNotes[noteIndex] = form
+
       }
     },
+    
     // 增加分类
     addMenu(form) {
       const menuitem = {
@@ -74,7 +90,15 @@ export const useMainStore = defineStore('main',{
     // 删除笔记
     deleteNote(id) {
       this.notes = this.notes.filter(note=>note.id !== id)
-      // this.notes.splice(id, 1)
+      this.filteredNotes = this.filteredNotes.filter(note=>note.id !== id)
+    },
+    // 改变分类
+    changeFilters(type) {
+      this.filteredNotes = this.notes.filter(note=>note.classification === type)
+    },
+    //显示全部
+    clearFilters() {
+      this.filteredNotes = this.notes
     }
   }
 })
