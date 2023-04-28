@@ -8,7 +8,7 @@
         <div class="login__box">
           <i class="ri-user-3-line login__icon"></i>
           <div class="login__box-input">
-            <input type="email" required class="login__input" placeholder=" " v-model="state.email">
+            <input required class="login__input" placeholder=" " v-model="state.account">
             <label for="" class="login__label">邮箱</label>
           </div>
         </div>
@@ -52,7 +52,7 @@
 
 <script setup>
 import { ref, reactive } from 'vue'
-import { login } from '../service/user'//登录逻辑
+import { registerAPI } from '../api/user';
 import { setLocal } from '../common/js/utils'//设置本地token
 
 
@@ -62,7 +62,7 @@ const passwordStyle = ref('password')//密码文本的样式
 const passwordStyle_v = ref('password')//确认密码文本的样式
 
 const state = reactive({
-    email: '',
+    account: '',
     password: '',//密码
     password_v: '',//确认密码
 
@@ -91,20 +91,31 @@ const ChangeEyeTwo = () => {
       passwordStyle_v.value='password'
     }
 }
-//注册提交逻辑，此部分未完工，用的是登录逻辑，但是密码一致性验证有
-const submit = async (values) => {
-  if (state.password!= state.password_v) {
-    console.log('两次密码不同')//验证两次输入的密码是否相同
-    console.log('1',state.password)
-    console.log('2',state.password_v)
-    return
-    }
-    const { data } = await login({
-        "loginName": values.email,
-        "passwordMd5": values.password//md5加密为实现
+function submit(){
+  registerAPI({
+        "telephoneNumber": "Duis",
+        "password": "irure eu"
+    }).then(res => {
+      console.log(res);
     })
-    setLocal('token', data)
-    // 需要刷新页面，否则 axios.js 文件里的 token 不会被重置
-    window.location.href = '/'
-}
+    // setLocal('token', data)
+    // // 需要刷新页面，否则 axios.js 文件里的 token 不会被重置
+    // window.location.href = '/'
+} 
+//注册提交逻辑，此部分未完工，用的是登录逻辑，但是密码一致性验证有
+// const submit = async (values) => {
+//   if (state.password!= state.password_v) {
+//     console.log('两次密码不同')//验证两次输入的密码是否相同
+//     console.log('1',state.password)
+//     console.log('2',state.password_v)
+//     return
+//     }
+//     const { data } = await login({
+//         "loginName": values.email,
+//         "passwordMd5": values.password//md5加密为实现
+//     })
+//     setLocal('token', data)
+//     // 需要刷新页面，否则 axios.js 文件里的 token 不会被重置
+//     window.location.href = '/'
+// }
 </script>

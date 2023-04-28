@@ -8,8 +8,8 @@
         <div class="login__box">
           <i class="ri-user-3-line login__icon"></i>
           <div class="login__box-input">
-            <input type="email" required class="login__input" placeholder=" " v-model="state.email">
-            <label for="" class="login__label">邮箱</label>
+            <input required class="login__input" placeholder=" " v-model="state.account">
+            <label for="" class="login__label">账号</label>
           </div>
         </div>
 
@@ -241,13 +241,13 @@
 
 <script setup>
 import { ref, reactive } from 'vue'
-import { login } from '../service/user'//登录逻辑
+import { loginAPI } from '../api/user';//新登录逻辑
 import { setLocal } from '../common/js/utils'//设置本地token
 
 const isShow = ref(true)//密码处眼睛的样式
 const passwordStyle = ref('password')//密码文本的样式
 const state = reactive({
-    email: '',
+    account: '',
     password: '',
 
 })
@@ -263,14 +263,19 @@ const ChangeEye = () => {
       passwordStyle.value='password'
     }
 }
-//登录提交逻辑，此部分未完工
-const submit = async (values) => {
-    const { data } = await login({
-        "loginName": values.email,
-        "passwordMd5": values.password//md5加密为实现
+
+
+// 登录提交逻辑，此部分未完工
+function submit(){
+  loginAPI({
+        "telephoneNumber": state.account,
+        "password": state.password//md5加密未实现
+    }).then(res => {
+      console.log(res);
     })
-    setLocal('token', data)
-    // 需要刷新页面，否则 axios.js 文件里的 token 不会被重置
-    window.location.href = '/'
-}
+    // setLocal('token', data)
+    // // 需要刷新页面，否则 axios.js 文件里的 token 不会被重置
+    // window.location.href = '/'
+} 
+
 </script>

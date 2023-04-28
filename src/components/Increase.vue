@@ -21,7 +21,6 @@
                                     <el-option v-for="item in options" :key="item.value" :label="item.name"
                                         :value="item.name" />
                                 </el-select>
-                                <!-- </el-form-item> -->
                             </div>
                         </div>
                         <div class="form-row">

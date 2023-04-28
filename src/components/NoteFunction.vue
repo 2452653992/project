@@ -30,7 +30,7 @@
                     content="刷新列表"
                     placement="top"
                 >
-                    <el-button :icon="RefreshRight" circle />
+                    <el-button :icon="RefreshRight" circle @click="shuaxin()"/>
                 </el-tooltip>
                 
                 
@@ -55,6 +55,11 @@
     const handleDelete = () => {
         eventBus.emit('handleDeleteButton')
     }
+    const shuaxin = () => {
+        store.getMenuItems();
+        console.log('刷新被使用');
+    }
+    
 onMounted(()=>{
     
 })

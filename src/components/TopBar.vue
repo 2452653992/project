@@ -44,7 +44,7 @@ const logOut = () => {
   border: 1px solid rgb(205, 205, 205);
 }
 .logo {
-  width: 285px;
+  width: 320px;
   height: 100%;
   padding: 20px 40px;
   background-color: rgb(48, 65, 86);
@@ -52,9 +52,10 @@ const logOut = () => {
 .logo span {
   display: flex;
   align-items: center;
+  justify-content: center;
   height: 36px;
   line-height: 20px;
-  font-size: 18px;
+  font-size: 21px;
   font-weight: bold;
   color: #fff;
 }

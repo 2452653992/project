@@ -122,15 +122,7 @@ const handleEdit2 = () => {
         // clearTimeout(timer)
     });
 }
-// const onAddItem = () => {
-//     now.setDate(now.getDate() + 1)
-//     tableData.value.push({
-//         title: 'tnew',
-//         classification: 'go',
-//         creationTime: dayjs(now).format('YYYY-MM-DD'),
-//         status: 'unfinished',
-//     })
-// }
+
 onMounted(() => {
     eventBus.on('handleEditButton',handleEdit2)
     eventBus.on('handleDeleteButton',handleDelete)

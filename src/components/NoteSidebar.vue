@@ -5,20 +5,29 @@
         background-color="transparent">
             <el-sub-menu index="1">
                 <template #title>
+                    <el-icon>
+                        <location />
+                    </el-icon>
+                    <span style="marginLeft:35px;fontSize:20px;fontWeight:500;margin-right: 30px;">笔记分类</span>
                     
-                            <el-icon>
-                                <location />
-                            </el-icon>
-                            <span style="marginLeft:35px;fontSize:20px;fontWeight:500">笔记分类</span>
-                            
-                            <el-button text @click="addMenuItem()">
-                                <el-icon>
-                                    <Plus />
-                                </el-icon>
-                            </el-button>
-                      
-                        
-                    <el-dialog v-model="dialogFormVisible" title="新建分类">
+                    <el-button text @click.stop="addMenuItem()">
+                        <el-icon>
+                            <Plus />
+                        </el-icon>
+                    </el-button>
+                </template>
+                <li class="a" @click="clearFilterType()">无分类</li>
+                <el-menu-item v-for="menuItem in store.MenuItems" :key="menuItem.id"
+                    @click="changeFilterType(menuItem.name)" class="a">
+                    <span style="width:170px;textAlign:left">{{ menuItem.name }} </span>
+                    <el-icon @click="handleDelMenu(menuItem.id)">
+                        <Delete />
+                    </el-icon>
+                </el-menu-item>
+            </el-sub-menu>
+
+        </el-menu>
+        <el-dialog v-model="dialogFormVisible" title="新建分类">
                         <el-form :model="form">
                             <el-form-item label="分类名称" :label-width="formLabelWidth">
                                 
@@ -36,27 +45,6 @@
                             </span>
                         </template>
                     </el-dialog>
-
-                </template>
-                
-                <!-- <el-menu-item v-for="menuItem in store.MenuItems" :key="menuItem.id"
-                    @click="changeFilterType(menuItem.name)" class="a">
-                    <span style="width:170px;textAlign:left">{{ menuItem.name }} </span>
-                    <el-icon @click="handleDelMenu(menuItem.id)">
-                        <Delete />
-                    </el-icon>
-                </el-menu-item> -->
-                <li class="a">无分类</li>
-                <el-menu-item v-for="menuItem in store.MenuItems" :key="menuItem.id"
-                    @click="changeFilterType(menuItem.name)" class="a">
-                    <span style="width:170px;textAlign:left">{{ menuItem.name }} </span>
-                    <el-icon @click="handleDelMenu(menuItem.id)">
-                        <Delete />
-                    </el-icon>
-                </el-menu-item>
-            </el-sub-menu>
-
-        </el-menu>
     </div>
 </template>
 

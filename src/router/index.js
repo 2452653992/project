@@ -5,7 +5,7 @@ import Home from '../pages/Home.vue'
 import NewRegister from '../pages/NewRegister.vue'
 // import Increase from '../pages/Increase.vue' // 该组件由对话框实现
 import NewLogin from '../pages/NewLogin.vue'
-
+import test from '../pages/test.vue'
 
 const routes = [
     {
@@ -24,6 +24,10 @@ const routes = [
     {
         path: '/Home',
         component: Home
+    },
+    {
+        path: '/test',
+        component: test
     },
     
 

@@ -1,7 +1,26 @@
 import { defineStore } from 'pinia'
 import { nanoid } from 'nanoid'
+import axios from 'axios';
+// import { getnotesAPI } from '../api/note';
 export const useMainStore = defineStore('main',{
   state:()=>{
+    // var MenuItems;
+
+    // async function updateNotes() {
+    //   MenuItems = await getnotesAPI().then(res => {
+    //     MenuItems=res.data;
+    //     console.log('res:',res.data);
+    //     console.log('MenuItems内',MenuItems);
+    //   })
+    // }
+    // updateNotes();
+    // console.log('MenuItems外',MenuItems);
+    // getnotesAPI().then(res => {
+    //   MenuItems=res.data;
+    //   console.log('res:',res.data);
+    //   console.log('MenuItems内',MenuItems);
+    // })
+    // console.log('MenuItems外',MenuItems);
     return {
       // 存储分类
       dialogVisible: false,
@@ -21,6 +40,7 @@ export const useMainStore = defineStore('main',{
         }
         
       ],
+      // MenuItems,
       notes: [
         {
           id: '0',
@@ -99,6 +119,6 @@ export const useMainStore = defineStore('main',{
     //显示全部
     clearFilters() {
       this.filteredNotes = this.notes
-    }
+    },
   }
 })

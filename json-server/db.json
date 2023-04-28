@@ -1,0 +1,39 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    },
+    {
+      "id": 2,
+      "title": "啦啦啦啦",
+      "author": "啊啊啊"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "MenuItems": [
+    {
+      "id" : 100,
+      "name": "c++"
+      
+    },
+    {
+      "id": 101,
+      "name": "python"
+    },
+    {
+      "id": 102,
+      "name": "JAVA"
+    }
+  ]
+}
